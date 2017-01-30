@@ -45,7 +45,8 @@ function runEvent (category) {
 
 function doneEvent (category) {
   $('img').map(function(index, node) {
-    var isPrismic = new RegExp("^https:\/\/prismic-io.s3.amazonaws.com\/.*$").test($(node).attr('src'));
+    var isPrismic = new RegExp("^https:\/\/prismic-io.s3.amazonaws.com\/.*$")
+      .test($(node).attr('src'));
     if(isPrismic) {
       var label = "done";
       var type = "done";
@@ -68,18 +69,18 @@ prismic.analytics = function() {
       crossDomain: true
     })
     .then(function(data) {
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-      ga('create', 'UA-43699356-1', {'cookieDomain': 'none'});
-      ga('set', '&uid', data.userId);
-      ga('set', 'dimension1', data.userId);
-      ga('send', 'pageview');
+      // (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      //   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      //   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      // })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      // ga('create', 'UA-43699356-1', {'cookieDomain': 'none'});
+      // ga('set', '&uid', data.userId);
+      // ga('set', 'dimension1', data.userId);
+      // ga('send', 'pageview');
 
-      var category = "tutorial-quickstart";
-      runEvent(category);
-      doneEvent(category);
+      // var category = "tutorial-quickstart";
+      // runEvent(category);
+      // doneEvent(category);
     });
   }
 }

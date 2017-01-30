@@ -1,0 +1,57 @@
+mixin dateString(doc, uid)
+  - var d = doc.getDate(uid)
+  - var month = d.getMonth()
+  - var day = d.getDay()
+  - var year = d.getFullYear()
+  - var date = d.getDate()
+
+  case month
+    when 0
+      - month = 'January'
+    when 0
+      - month = 'February'
+    when 0
+      - month = 'March'
+    when 0
+      - month = 'April'
+    when 0
+      - month = 'May'
+    when 0
+      - month = 'June'
+    when 0
+      - month = 'July'
+    when 0
+      - month = 'August'
+    when 0
+      - month = 'September'
+    when 0
+      - month = 'October'
+    when 0
+      - month = 'November'
+    when 0
+      - month = 'December'
+    default
+      - month = 'ERROR'
+
+  case day
+    when 0
+      - day = 'Sunday'
+    when 1
+      - day = 'Monday'
+    when 1
+      - day = 'Tuesday'
+    when 1
+      - day = 'Wednesday'
+    when 1
+      - day = 'Thursday'
+    when 1
+      - day = 'Friday'
+    when 1
+      - day = 'Saturday'
+    when 1
+      - day = 'Sunday'
+    default
+      - day = 'ERROR'
+
+  - var fullDate = day + ', ' + date + ' ' + month + ' ' + year
+  != fullDate

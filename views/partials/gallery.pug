@@ -1,13 +1,9 @@
-section.gallery.content-section
+section.gallery
 
   //- Loop through the gallery items
   each galleryItem in slice.value.toArray()
-  
+
     .gallery-item
       img(src=galleryItem.getImage("image").url)
-      != galleryItem.getStructuredText("description").asHtml(ctx.linkResolver)
-      
-      if ( galleryItem.getLink("link") && galleryItem.getText("linkText") )
-        p.gallery-link
-          a(href=galleryItem.getLink("link").url(ctx.linkResolver)) !{galleryItem.getText("linkText")}
-
+      span
+        != galleryItem.getText("caption")

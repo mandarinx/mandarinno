@@ -1,11 +1,10 @@
 header.site-header
-  a(href='./')
-    .logo Example Site
+  a(href='./').logo Mandarin
 
-  if menuContent != null
+  if menu != null
     nav
       ul
-        each link in menuContent.getGroup('menu.items').toArray()
+        each link in menu.getGroup('menu.items').toArray()
           li
             a(href=link.getLink('link').url(ctx.linkResolver))
               != link.getText('label')

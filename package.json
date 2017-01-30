@@ -19,5 +19,8 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/mandarinx/mandarinno.git"
+  },
+  "devDependencies": {
+    "nodemon": "1.11.0"
   }
 }

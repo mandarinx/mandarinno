@@ -1,0 +1,31 @@
+extends ./layout.pug
+
+include ./mixins/bodytext.pug
+include ./mixins/datestring.pug
+
+block body
+
+  section.project-hero(style='background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)), url(' + doc.getImage('project.hero-image').url + ')')
+    .container
+      h2 !{doc.getText('project.title')}
+
+  != doc.getStructuredText('project.title').asHtml()
+  != doc.getStructuredText('project.summary').asHtml()
+  +dateString(doc, 'project.date-published')
+
+  -// If there are any slices
+  if doc.getSliceZone('project.content') !== null
+
+    for slice in doc.getSliceZone('project.content').slices
+      case slice.sliceType
+        when 'body-text'
+          div
+            +bodyTextH2(slice.value)
+        when 'gallery'
+          include ./partials/gallery.pug
+        when 'store-links'
+          div
+            +bodyTextH2(slice.value)
+        when 'review-links'
+          div
+            +bodyTextH2(slice.value)

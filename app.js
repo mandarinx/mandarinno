@@ -39,39 +39,43 @@ app.route('/preview').get(function(req, res) {
 });
 
 // Route for pages
-app.route('/:uid').get(function(req, res) {
+app.route('/project/:uid').get(function(req, res) {
     var uid = req.params.uid;
     api(req, res).then(function(api) {
-        api.getByUID('page', uid).then(function(pageContent) {
-            api.getByUID('menu').then(function(menuContent) {
-                res.render('page', {
-                    pageContent: pageContent,
-                    menuContent: menuContent
+        var p_project = api.getByUID('project', uid);
+        var p_menu = api.getByUID('menu', 'menu');
+
+        Promise
+            .all([p_project, p_menu])
+            .then(function (values) {
+                res.render('project', {
+                    doc: values[0],
+                    menu: values[1]
                 });
-            }).catch(function(err) {
+            })
+            .catch(function(err) {
                 handleError(err, req, res);
             });
-        }).catch(function(err) {
-            handleError(err, req, res);
-        });
     });
 });
 
 // Route for the homepage
 app.route('/').get(function(req, res){
     api(req, res).then(function(api) {
-        api.getByUID('frontpage').then(function(pageContent) {
-            api.getByUID('menu').then(function(menuContent) {
+        var p_frontpage = api.getByUID('frontpage', 'frontpage');
+        var p_menu = api.getByUID('menu', 'menu');
+
+        Promise
+            .all([p_frontpage, p_menu])
+            .then(function (values) {
                 res.render('frontpage', {
-                    pageContent: pageContent,
-                    menuContent: menuContent
+                    doc: values[0],
+                    menu: values[1]
                 });
-            }).catch(function(err) {
+            })
+            .catch(function(err) {
                 handleError(err, req, res);
             });
-        }).catch(function(err) {
-            handleError(err, req, res);
-        });
     });
 });
 
